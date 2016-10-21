@@ -19,6 +19,7 @@ import { Food } from './food.model';
         <h3> {{ currentFood.name }} </h3>
         <h5><strong>Description:</strong> {{ currentFood.description }}</h5>
         <h5><strong>Calories:</strong> {{ currentFood.calories }}</h5>
+        <h5><strong>Date:</strong> {{ currentFood.logDate.toLocaleDateString() }}</h5>
         <button class="btn btn-warning" (click)="onEditClick(currentFood)">Edit</button>
       </div>
     </div>

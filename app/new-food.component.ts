@@ -18,9 +18,13 @@ import { Food } from './food.model';
         <label>Enter the total calories for the food:</label>
         <input class="form-control" type="number" #foodCalories>
       </div>
+      <div class="form-group">
+        <label>Enter the date this food was eaten:</label>
+        <input class="form-control" type="date" #foodDate>
+      </div>
       <button type="button" class="btn btn-primary"
         (click)="
-          addClicked(foodName.value, foodDescription.value, foodCalories.value);
+          addClicked(foodName.value, foodDescription.value, foodCalories.value, foodDate.value);
           foodName.value='';
           foodDescription.value='';
           foodCalories.value='';
@@ -31,14 +35,21 @@ import { Food } from './food.model';
 })
 export class NewFoodComponent {
   @Output() newFoodSender = new EventEmitter();
-  addClicked(name: string, description: string, calories: number) {
+  addClicked(name: string, description: string, calories: number, foodDate: string) {
     if (name && description && calories) {
       var caloriesNum: number = Number(calories);
-      var newFoodToAdd = new Food(name, description, caloriesNum);
+      var logDate: Date = new Date(Date.parse(foodDate) + this.checkDateOffset());
+      var newFoodToAdd = new Food(name, description, caloriesNum, logDate);
       console.log(newFoodToAdd);
       this.newFoodSender.emit(newFoodToAdd);
     } else {
       alert("Please fill out all fields before submitting.")
     }
+  }
+
+  checkDateOffset() {
+    var tempDate: Date = new Date();
+    return tempDate.getTimezoneOffset() * 60 * 1000;
+    //return offsetMillis;
   }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "angular2-skeleton",
-  "description": "template",
+  "name": "calorie-tracker",
+  "description": "Calorie tracking application, using Angular.",
   "main": "",
   "authors": [
     "Andrew Merrell <andrew.m.merrell@gmail.com>"

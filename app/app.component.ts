@@ -6,9 +6,13 @@ import { Food } from './food.model';
   template: `
   <div class="container">
     <h1>Calorie Tracker</h1>
+    <new-food
+      (newFoodSender)="addFood($event)"
+    ></new-food>
     <food-list
       [childFoodList]="masterFoodList"
     ></food-list>
+
   </div>
   `
 })
@@ -19,4 +23,8 @@ export class AppComponent {
     new Food("Banana", "Post-lunch snack", 90),
     new Food("Soda", "Post-lunch snack", 150)
   ];
+
+  addFood(foodToAdd: Food) {
+    this.masterFoodList.push(foodToAdd);
+  }
 }

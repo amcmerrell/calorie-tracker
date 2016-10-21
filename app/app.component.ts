@@ -6,13 +6,16 @@ import { Food } from './food.model';
   template: `
   <div class="container">
     <h1>Calorie Tracker</h1>
+    <edit-food
+      [childSelectedFood]="selectedFood"
+    ></edit-food>
     <new-food
       (newFoodSender)="addFood($event)"
     ></new-food>
     <food-list
       [childFoodList]="masterFoodList"
+      (editClickSender)="setSelectedFood($event)"
     ></food-list>
-
   </div>
   `
 })
@@ -24,7 +27,13 @@ export class AppComponent {
     new Food("Soda", "Post-lunch snack", 150)
   ];
 
+  public selectedFood = null;
+
   addFood(foodToAdd: Food) {
     this.masterFoodList.push(foodToAdd);
+  }
+
+  setSelectedFood(foodToEdit: Food) {
+    this.selectedFood = foodToEdit;
   }
 }

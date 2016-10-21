@@ -38,6 +38,7 @@ export class NewFoodComponent {
   addClicked(name: string, description: string, calories: number, foodDate: string) {
     if (name && description && calories) {
       var caloriesNum: number = Number(calories);
+      console.log(Date.parse(foodDate) + this.checkDateOffset());
       var logDate: Date = new Date(Date.parse(foodDate) + this.checkDateOffset());
       var newFoodToAdd = new Food(name, description, caloriesNum, logDate);
       console.log(newFoodToAdd);
@@ -50,6 +51,5 @@ export class NewFoodComponent {
   checkDateOffset() {
     var tempDate: Date = new Date();
     return tempDate.getTimezoneOffset() * 60 * 1000;
-    //return offsetMillis;
   }
 }

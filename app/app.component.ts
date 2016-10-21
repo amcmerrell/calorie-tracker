@@ -4,32 +4,34 @@ import { Food } from './food.model';
 @Component({
   selector: 'my-app',
   template: `
-  <div class="container">
+  <div class="container well" id="main-well">
     <h1>Calorie Tracker</h1>
-    <stat-summary
+    <!-- <stat-summary
       [childTotalCalories]="totalCalories"
-    ></stat-summary>
-    <edit-food
-      [childSelectedFood]="selectedFood"
-      (doneClickedSender)="finishedEditing()"
-    ></edit-food>
-    <new-food
-      (newFoodSender)="addFood($event)"
-    ></new-food>
-    <food-list
-      [childFoodList]="masterFoodList"
-      (editClickSender)="setSelectedFood($event)"
-    ></food-list>
+    ></stat-summary> -->
+    <div class="row">
+      <div class="col-md-8">
+        <edit-food
+          [childSelectedFood]="selectedFood"
+          (doneClickedSender)="finishedEditing()"
+        ></edit-food>
+        <new-food
+          (newFoodSender)="addFood($event)"
+        ></new-food>
+        </div>
+      <div class="col-md-4">
+        <food-list
+          [childFoodList]="masterFoodList"
+          (editClickSender)="setSelectedFood($event)"
+        ></food-list>
+      </div>
+    </div>
   </div>
   `
 })
 
 export class AppComponent {
-  public masterFoodList: Food[] = [
-    new Food("Pizza", "Extra Cheese and pepperoni.", 600, new Date(1477033200000)),
-    new Food("Banana", "Post-lunch snack", 90, new Date(1477033200000)),
-    new Food("Soda", "Post-lunch snack", 150, new Date(1477033200000))
-  ];
+  public masterFoodList: Food[] = [];
 
   public selectedFood: Food = null;
   public totalCalories: number = 0;
@@ -38,7 +40,7 @@ export class AppComponent {
   addFood(foodToAdd: Food) {
     this.masterFoodList.push(foodToAdd);
     this.sumCalories(this.masterFoodList);
-    this.sumDays(this.masterFoodList);
+    //this.sumDays(this.masterFoodList);
   }
 
   setSelectedFood(foodToEdit: Food) {
@@ -56,14 +58,14 @@ export class AppComponent {
     return this.totalCalories;
   }
 
-  sumDays(foodList: Food[]) {
-    var tempFoodList: Food [] = foodList;
-    for (let i = 0; i < foodList.length; i++) {
-      if (foodList.indexOf(foodList[i].logDate.toString()) == foodList.lastIndexOf(foodList[i].logDate.toString())) {
-        this.totalDays++
-      }
-    }
-    console.log(this.totalDays);
-    return this.totalDays;
-  }
+  // sumDays(foodList: Food[]) {
+  //   var tempFoodList: Food [] = foodList;
+  //   for (let i = 0; i < foodList.length; i++) {
+  //     if (foodList.indexOf(foodList[i].logDate.toString()) == foodList.lastIndexOf(foodList[i].logDate.toString())) {
+  //       this.totalDays++
+  //     }
+  //   }
+  //   console.log(this.totalDays);
+  //   return this.totalDays;
+  // }
 }

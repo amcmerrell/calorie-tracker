@@ -33,10 +33,12 @@ export class AppComponent {
 
   public selectedFood: Food = null;
   public totalCalories: number = 0;
+  public totalDays: number = 0;
 
   addFood(foodToAdd: Food) {
     this.masterFoodList.push(foodToAdd);
     this.sumCalories(this.masterFoodList);
+    this.sumDays(this.masterFoodList);
   }
 
   setSelectedFood(foodToEdit: Food) {
@@ -52,5 +54,16 @@ export class AppComponent {
       this.totalCalories += foodList[i].calories;
     }
     return this.totalCalories;
+  }
+
+  sumDays(foodList: Food[]) {
+    var tempFoodList: Food [] = foodList;
+    for (let i = 0; i < foodList.length; i++) {
+      if (foodList.indexOf(foodList[i].logDate.toString()) == foodList.lastIndexOf(foodList[i].logDate.toString())) {
+        this.totalDays++
+      }
+    }
+    console.log(this.totalDays);
+    return this.totalDays;
   }
 }

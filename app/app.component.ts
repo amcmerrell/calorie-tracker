@@ -8,6 +8,7 @@ import { Food } from './food.model';
     <h1>Calorie Tracker</h1>
     <edit-food
       [childSelectedFood]="selectedFood"
+      (doneClickedSender)="finishedEditing()"
     ></edit-food>
     <new-food
       (newFoodSender)="addFood($event)"
@@ -35,5 +36,9 @@ export class AppComponent {
 
   setSelectedFood(foodToEdit: Food) {
     this.selectedFood = foodToEdit;
+  }
+
+  finishedEditing() {
+    this.selectedFood = null;
   }
 }

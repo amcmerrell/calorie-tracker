@@ -2,10 +2,11 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { AppComponent }   from './app.component';
-import { FoodListComponent }   from './food-list.component';
-import { NewFoodComponent }   from './new-food.component';
-import { EditFoodComponent }   from './edit-food.component';
-import { SortCaloriesPipe }   from './sort-calories.pipe';
+import { FoodListComponent } from './food-list.component';
+import { NewFoodComponent } from './new-food.component';
+import { EditFoodComponent } from './edit-food.component';
+import { SortCaloriesPipe } from './sort-calories.pipe';
+import { SortDatePipe } from './sort-date.pipe';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { SortCaloriesPipe }   from './sort-calories.pipe';
     FoodListComponent,
     NewFoodComponent,
     EditFoodComponent,
-    SortCaloriesPipe
+    SortCaloriesPipe,
+    SortDatePipe
   ],
   bootstrap: [ AppComponent ]
 })

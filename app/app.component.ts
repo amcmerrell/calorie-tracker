@@ -23,9 +23,9 @@ import { Food } from './food.model';
 
 export class AppComponent {
   public masterFoodList: Food[] = [
-    new Food("Pizza", "Extra Cheese and pepperoni.", 600, new Date()),
-    new Food("Banana", "Post-lunch snack", 90, new Date()),
-    new Food("Soda", "Post-lunch snack", 150, new Date())
+    new Food("Pizza", "Extra Cheese and pepperoni.", 600, new Date(1477033200000)),
+    new Food("Banana", "Post-lunch snack", 90, new Date(1477033200000)),
+    new Food("Soda", "Post-lunch snack", 150, new Date(1477033200000))
   ];
 
   public selectedFood = null;

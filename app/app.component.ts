@@ -14,5 +14,9 @@ import { Food } from './food.model';
 })
 
 export class AppComponent {
-  public masterFoodList = [];
+  public masterFoodList: Food[] = [
+    new Food("Pizza", "Extra Cheese and pepperoni.", 600),
+    new Food("Banana", "Post-lunch snack", 90),
+    new Food("Soda", "Post-lunch snack", 150)
+  ];
 }

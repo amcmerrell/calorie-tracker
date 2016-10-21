@@ -6,6 +6,9 @@ import { Food } from './food.model';
   template: `
   <div class="container">
     <h1>Calorie Tracker</h1>
+    <stat-summary
+      [childTotalCalories]="totalCalories"
+    ></stat-summary>
     <edit-food
       [childSelectedFood]="selectedFood"
       (doneClickedSender)="finishedEditing()"
@@ -28,10 +31,12 @@ export class AppComponent {
     new Food("Soda", "Post-lunch snack", 150, new Date(1477033200000))
   ];
 
-  public selectedFood = null;
+  public selectedFood: Food = null;
+  public totalCalories: number = 0;
 
   addFood(foodToAdd: Food) {
     this.masterFoodList.push(foodToAdd);
+    this.sumCalories(this.masterFoodList);
   }
 
   setSelectedFood(foodToEdit: Food) {
@@ -40,5 +45,12 @@ export class AppComponent {
 
   finishedEditing() {
     this.selectedFood = null;
+  }
+
+  sumCalories(foodList: Food[]) {
+    for (let i = 0; i < foodList.length; i++) {
+      this.totalCalories += foodList[i].calories;
+    }
+    return this.totalCalories;
   }
 }

@@ -14,8 +14,9 @@ _Angular application that tracks users' meals and calories._
 |------------------|---------------|----------------|
 | Application displays current list of foods. | Browser loads page after form submission | List of submitted foods. |
 | Visitor submits a food with name, description and calories | "hamburger", "no bun", "300"  | Page refreshes with food details added to list. |
+| Form alerts user if all fields are not filled out. | No input. | "Please fill out all fields before submitting." |
 | Visitor chooses to sort by calorie ranges. | Select "high calorie" | List of submitted foods over 500 calories. |
-| Previous food submissions can be edited. | Click "Edit food", edit fields, and click "Done" | Display entry with updated data. |
+| Edit form allows user to update info. | Click "Edit food", edit fields, and click "Done" | Display entry with updated data. |
 
 ## Setup/Installation Requirements
 

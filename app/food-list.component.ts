@@ -4,8 +4,8 @@ import { Food } from './food.model';
 @Component({
   selector: 'food-list',
   template: `
+    <h2>Food Log</h2>
     <div class="row">
-      <h2>Food Log</h2>
       <div class="form-group col-md-3">
         <select (change)="onCalorieChange($event.target.value)" class="filter form-control">
           <option value="all">Show All Foods</option>
@@ -13,7 +13,9 @@ import { Food } from './food.model';
           <option value="high">Show High Calorie Foods</option>
         </select>
       </div>
-      <div class="col-md-3" *ngFor="let currentFood of childFoodList">
+    </div>
+    <div class="row">
+      <div class="col-md-3" *ngFor="let currentFood of childFoodList | sortCalories:calorieRange">
         <h3> {{ currentFood.name }} </h3>
         <h5><strong>Description:</strong> {{ currentFood.description }}</h5>
         <h5><strong>Calories:</strong> {{ currentFood.calories }}</h5>
@@ -25,6 +27,13 @@ import { Food } from './food.model';
 export class FoodListComponent {
   @Input() childFoodList: Food[];
   @Output() editClickSender = new EventEmitter();
+
+  public calorieRange: string = "all";
+
+  onCalorieChange(selectedCalorieRange: string) {
+    this.calorieRange = selectedCalorieRange;
+  }
+
   onEditClick(foodToEdit: Food) {
     this.editClickSender.emit(foodToEdit);
   }

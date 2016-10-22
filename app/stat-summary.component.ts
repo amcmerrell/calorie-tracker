@@ -5,12 +5,28 @@ import { Food } from './food.model';
   selector: 'stat-summary',
   template: `
     <div class="row">
-      <div class="col-md-4" *ngIf="childTotalCalories">{{ childTotalCalories }}</div>
+      <div class="col-md-3 stat-display">
+        <h2>Total Days Logged</h2>
+        <h2 class="stat-display">{{ childTotalDays }}</h2>
+      </div>
+      <div class="col-md-3 stat-display">
+        <h2>Calories Today</h2>
+        <h2>{{ childCaloriesToday }}</h2>
+      </div>
+      <div class="col-md-3 stat-display">
+        <h2>Avg. Calories per Food</h2>
+        <h2>{{ childAvgFoodCalories.toFixed(0) }}</h2>
+      </div>
+      <div class="col-md-3 stat-display">
+        <h2>Avg. Calories per Day</h2>
+        <h2>{{ childAvgCalories.toFixed(0) }}</h2>
+      </div>
     </div>
   `
 })
 export class StatSummaryComponent {
-  @Input() childTotalCalories: number;
-
-
+  @Input() childTotalDays: number;
+  @Input() childCaloriesToday: number;
+  @Input() childAvgCalories: number;
+  @Input() childAvgFoodCalories: number;
 }

@@ -88,7 +88,6 @@ export class AppComponent {
       }
     }
     this.totalDays = tempDayCount;
-    // return this.totalDays;
   }
 
   avgCalsPerDay() {

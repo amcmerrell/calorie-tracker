@@ -6,7 +6,6 @@ import { FoodListComponent } from './food-list.component';
 import { NewFoodComponent } from './new-food.component';
 import { EditFoodComponent } from './edit-food.component';
 import { SortCaloriesPipe } from './sort-calories.pipe';
-import { SortDatePipe } from './sort-date.pipe';
 import { StatSummaryComponent } from './stat-summary.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { StatSummaryComponent } from './stat-summary.component';
     NewFoodComponent,
     EditFoodComponent,
     SortCaloriesPipe,
-    SortDatePipe,
     StatSummaryComponent
   ],
   bootstrap: [ AppComponent ]

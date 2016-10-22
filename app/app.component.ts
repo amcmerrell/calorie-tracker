@@ -6,9 +6,9 @@ import { Food } from './food.model';
   template: `
   <div class="container well" id="main-well">
     <h1>Calorie Tracker</h1>
-    <!-- <stat-summary
+    <stat-summary
       [childTotalCalories]="totalCalories"
-    ></stat-summary> -->
+    ></stat-summary>
     <div class="row">
       <div class="col-md-8">
         <edit-food
@@ -36,11 +36,16 @@ export class AppComponent {
   public selectedFood: Food = null;
   public totalCalories: number = 0;
   public totalDays: number = 0;
+  public avgCalories: number = 0;
 
   addFood(foodToAdd: Food) {
     this.masterFoodList.push(foodToAdd);
     this.sumCalories(this.masterFoodList);
-    //this.sumDays(this.masterFoodList);
+    console.log(this.totalCalories);
+    this.sumDays(this.masterFoodList);
+    console.log(this.totalDays);
+    this.avgCalsPerDay();
+    console.log(this.avgCalories);
   }
 
   setSelectedFood(foodToEdit: Food) {
@@ -58,14 +63,20 @@ export class AppComponent {
     return this.totalCalories;
   }
 
-  // sumDays(foodList: Food[]) {
-  //   var tempFoodList: Food [] = foodList;
-  //   for (let i = 0; i < foodList.length; i++) {
-  //     if (foodList.indexOf(foodList[i].logDate.toString()) == foodList.lastIndexOf(foodList[i].logDate.toString())) {
-  //       this.totalDays++
-  //     }
-  //   }
-  //   console.log(this.totalDays);
-  //   return this.totalDays;
-  // }
+  sumDays(foodList: Food[]) {
+    var tempFoodList: string[] = [];
+    for (let i = 0; i < foodList.length; i++) {
+      tempFoodList.push((foodList[i].logDate).toString());
+    }
+    for (let i = 0; i < tempFoodList.length; i++) {
+      if (tempFoodList.indexOf(tempFoodList[i]) == tempFoodList.lastIndexOf(tempFoodList[i])) {
+        this.totalDays++;
+      }
+    }
+    return this.totalDays;
+  }
+
+  avgCalsPerDay() {
+    this.avgCalories = this.totalCalories / this.totalDays;
+  }
 }

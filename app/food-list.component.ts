@@ -5,6 +5,7 @@ import { Food } from './food.model';
   selector: 'food-list',
   template: `
     <h2>Food Log</h2>
+    <label>Filter by calories:</label>
     <select (change)="onCalorieChange($event.target.value)" class="filter form-control">
       <option value="all">Show All Foods</option>
       <option value="low">Show Low Calorie Foods</option>

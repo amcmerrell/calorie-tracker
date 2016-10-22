@@ -36,7 +36,7 @@ import { Food } from './food.model';
 export class NewFoodComponent {
   @Output() newFoodSender = new EventEmitter();
   addClicked(name: string, description: string, calories: number, foodDate: string) {
-    if (name && description && calories) {
+    if (name && description && calories && foodDate) {
       var caloriesNum: number = Number(calories);
       var logDate: Date = new Date(Date.parse(foodDate) + this.checkDateOffset());
       var newFoodToAdd = new Food(name, description, caloriesNum, logDate);

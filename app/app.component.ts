@@ -7,7 +7,10 @@ import { Food } from './food.model';
   <div class="container well" id="main-well">
     <h1>Calorie Tracker</h1>
     <stat-summary
-      [childTotalCalories]="totalCalories"
+      [childCaloriesToday]="caloriesToday"
+      [childAvgCalories]="avgCalories"
+      [childAvgFoodCalories]="avgFoodCalories"
+      [childTotalDays]="totalDays"
     ></stat-summary>
     <div class="row">
       <div class="col-md-8">
@@ -37,15 +40,12 @@ export class AppComponent {
   public totalCalories: number = 0;
   public caloriesToday: number = 0;
   public totalDays: number = 0;
+  public avgFoodCalories: number = 0;
   public avgCalories: number = 0;
 
   addFood(foodToAdd: Food) {
     this.masterFoodList.push(foodToAdd);
-    this.sumCalories(this.masterFoodList, new Date());
-    console.log(this.caloriesToday);
-    this.sumCalories(this.masterFoodList);
-    this.sumDays(this.masterFoodList);
-    this.avgCalsPerDay();
+    this.checkStats();
   }
 
   setSelectedFood(foodToEdit: Food) {
@@ -53,40 +53,53 @@ export class AppComponent {
   }
 
   finishedEditing() {
+    this.selectedFood.calories = Number(this.selectedFood.calories);
+    this.checkStats();
     this.selectedFood = null;
   }
 
-  sumCalories(foodList: Food[], today?: Date) {
-    if (today) {
-      var tempCalTotal: number = 0;
-      for (let i = 0; i < foodList.length; i++) {
-        if (today.toDateString() === foodList[i].logDate.toDateString()) {
-          tempCalTotal += foodList[i].calories;
-        }
+  sumDailyCalories(foodList: Food[], today: Date) {
+    var tempCalTotal: number = 0;
+    for (let i = 0; i < foodList.length; i++) {
+      if (today.toDateString() === foodList[i].logDate.toDateString()) {
+        tempCalTotal += foodList[i].calories;
       }
-      this.caloriesToday = tempCalTotal;
-    } else {
-      for (let i = 0; i < foodList.length; i++) {
-        this.totalCalories += foodList[i].calories;
-      }
-      return this.totalCalories;
     }
+    this.caloriesToday = tempCalTotal;
+  }
+
+  sumTotalCalories(foodList: Food[]) {
+    var tempTotalCalories: number = 0;
+    for (let i = 0; i < foodList.length; i++) {
+      tempTotalCalories += foodList[i].calories;
+    }
+    this.totalCalories = tempTotalCalories;
   }
 
   sumDays(foodList: Food[]) {
+    var tempDayCount: number = 0;
     var tempFoodList: string[] = [];
     for (let i = 0; i < foodList.length; i++) {
       tempFoodList.push((foodList[i].logDate).toString());
     }
     for (let i = 0; i < tempFoodList.length; i++) {
-      if (tempFoodList.indexOf(tempFoodList[i]) == tempFoodList.lastIndexOf(tempFoodList[i])) {
-        this.totalDays++;
+      if (i === tempFoodList.lastIndexOf(tempFoodList[i])) {
+        tempDayCount++;
       }
     }
-    return this.totalDays;
+    this.totalDays = tempDayCount;
+    // return this.totalDays;
   }
 
   avgCalsPerDay() {
     this.avgCalories = this.totalCalories / this.totalDays;
+  }
+
+  checkStats() {
+    this.sumDailyCalories(this.masterFoodList, new Date());
+    this.sumTotalCalories(this.masterFoodList);
+    this.sumDays(this.masterFoodList);
+    this.avgCalsPerDay();
+    this.avgFoodCalories = this.totalCalories / this.masterFoodList.length;
   }
 }

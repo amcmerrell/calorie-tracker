@@ -35,17 +35,17 @@ export class AppComponent {
 
   public selectedFood: Food = null;
   public totalCalories: number = 0;
+  public caloriesToday: number = 0;
   public totalDays: number = 0;
   public avgCalories: number = 0;
 
   addFood(foodToAdd: Food) {
     this.masterFoodList.push(foodToAdd);
+    this.sumCalories(this.masterFoodList, new Date());
+    console.log(this.caloriesToday);
     this.sumCalories(this.masterFoodList);
-    console.log(this.totalCalories);
     this.sumDays(this.masterFoodList);
-    console.log(this.totalDays);
     this.avgCalsPerDay();
-    console.log(this.avgCalories);
   }
 
   setSelectedFood(foodToEdit: Food) {
@@ -56,11 +56,21 @@ export class AppComponent {
     this.selectedFood = null;
   }
 
-  sumCalories(foodList: Food[]) {
-    for (let i = 0; i < foodList.length; i++) {
-      this.totalCalories += foodList[i].calories;
+  sumCalories(foodList: Food[], today?: Date) {
+    if (today) {
+      var tempCalTotal: number = 0;
+      for (let i = 0; i < foodList.length; i++) {
+        if (today.toDateString() === foodList[i].logDate.toDateString()) {
+          tempCalTotal += foodList[i].calories;
+        }
+      }
+      this.caloriesToday = tempCalTotal;
+    } else {
+      for (let i = 0; i < foodList.length; i++) {
+        this.totalCalories += foodList[i].calories;
+      }
+      return this.totalCalories;
     }
-    return this.totalCalories;
   }
 
   sumDays(foodList: Food[]) {

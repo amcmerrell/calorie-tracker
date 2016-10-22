@@ -6,20 +6,28 @@ import { Food } from './food.model';
   template: `
     <div class="row">
       <div class="col-md-3 stat-display">
-        <h2>Total Days Logged</h2>
-        <h2 class="stat-display">{{ childTotalDays }}</h2>
+        <div class="well">
+          <h2>Total Days Logged</h2>
+          <h3>{{ childTotalDays }}</h3>
+        </div>
       </div>
       <div class="col-md-3 stat-display">
-        <h2>Calories Today</h2>
-        <h2>{{ childCaloriesToday }}</h2>
+        <div class="well">
+          <h2>Calories Today</h2>
+          <h3>{{ childCaloriesToday }}</h3>
+        </div>
       </div>
       <div class="col-md-3 stat-display">
-        <h2>Avg. Calories per Food</h2>
-        <h2>{{ childAvgFoodCalories.toFixed(0) }}</h2>
+        <div class="well">
+          <h2>Avg. Calories per Food</h2>
+          <h3>{{ childAvgFoodCalories.toFixed(0) }}</h3>
+        </div>
       </div>
       <div class="col-md-3 stat-display">
-        <h2>Avg. Calories per Day</h2>
-        <h2>{{ childAvgCalories.toFixed(0) }}</h2>
+        <div class="well">
+          <h2>Avg. Calories per Day</h2>
+          <h3>{{ childAvgCalories.toFixed(0) }}</h3>
+        </div>
       </div>
     </div>
   `

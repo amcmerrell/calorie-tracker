@@ -5,10 +5,6 @@ body {
   -o-background-size: cover;
   background-size: cover;
   font-family: 'Roboto', sans-serif;
-  #main-well {
-    margin-top: 30px;
-    background: rgba(255, 255, 255, 0.75);
-  }
   h1 {
     font-family: 'Monoton', cursive;
     font-size: 60px;
@@ -18,5 +14,34 @@ body {
   h2 {
     font-weight: bold;
     font-style: italic;
+  }
+  .stat-display {
+    text-align: center;
+    height: 200px;
+    padding-left: 5px;
+    padding-right: 5px;
+    h2 {
+      font-size: 20px;
+    }
+    h3 {
+      font-size: 70px;
+      margin-top: 7px;
+    }
+    .well {
+      // background-color: grey;
+      // background:repeating-linear-gradient(-45deg, #8585ff, #8585ff 15px, lightgrey 15px, lightgrey 30px);
+      background:linear-gradient(to bottom, #5252ff, #8585ff);
+      color: white;
+      border: 0px solid black;
+      padding-top: 13%;
+      padding-right: 5px;
+      padding-left: 5px;
+      padding-bottom: 10%;
+      height: 100%;
+    }
+  }
+  #main-well {
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.75);
   }
 }
